@@ -22,11 +22,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        # Instala las dependencias si hay un requirements.txt o similar
-        if [ -f requirements.txt ]; then
-          pip install -r requirements.txt
-        fi
-        # Si hay otras dependencias, agrégalas aquí
+        pip install openpyxl  
 
     - name: Run the program
       run: python main.py
