@@ -1,0 +1,40 @@
+name: Run Program and Generate XLSX
+
+on:
+  workflow_dispatch:  # Permite ejecutar manualmente
+  push:
+    branches:
+      - main
+
+jobs:
+  run-program:
+    runs-on: ubuntu-latest
+    timeout-minutes: 480  # 8 horas, ajustable si es necesario
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        # Instala las dependencias si hay un requirements.txt o similar
+        if [ -f requirements.txt ]; then
+          pip install -r requirements.txt
+        fi
+        # Si hay otras dependencias, agrégalas aquí
+
+    - name: Run the program
+      run: python main.py
+
+    - name: Upload XLSX files
+      uses: actions/upload-artifact@v4
+      with:
+        name: generated-xlsx-files
+        path: |
+          **/*.xlsx  # Ajusta el path si los XLSX se generan en un directorio específico
+        retention-days: 30  # Mantén los artifacts por 30 días para descarga
