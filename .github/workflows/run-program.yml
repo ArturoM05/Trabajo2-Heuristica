@@ -32,5 +32,7 @@ jobs:
       with:
         name: generated-xlsx-files
         path: |
-          **/*.xlsx  # Ajusta el path si los XLSX se generan en un directorio específico
-        retention-days: 30  # Mantén los artifacts por 30 días para descarga
+          *.xlsx
+          */*.xlsx
+        if-no-files-found: error
+        retention-days: 30
