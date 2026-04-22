@@ -34,8 +34,8 @@ class SwapRangeSearch:
         current_flow, current_starts = evaluate_sequence(job_sequence, self._algo)
 
         improved = True
-        # iterations = 0
-        while improved and time.time() - start_computation < 3600:  
+        iterations = 0
+        while improved and time.time() - start_computation < 3600 and iterations < 1000:  
             improved = False
             best_delta = 0
             best_i = -1
@@ -66,6 +66,6 @@ class SwapRangeSearch:
                 )
                 current_flow, current_starts = evaluate_sequence(job_sequence, self._algo)
                 improved = True
-            # iterations += 1 
+            iterations += 1 
         end_computation = time.time()
         return current_starts, current_flow, (end_computation - start_computation) * 1000 #, iterations

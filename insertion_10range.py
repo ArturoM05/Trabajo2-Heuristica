@@ -43,8 +43,8 @@ class InsertionRangeSearch:
         current_flow, current_starts = evaluate_sequence(job_sequence, self._algo)
 
         improved = True
-        # iterations = 0
-        while improved and time.time() - start_computation < 3600:  
+        iterations = 0
+        while improved and time.time() - start_computation < 3600 and iterations < 1000:  
             improved = False
             seq_len = len(job_sequence)
 
@@ -69,7 +69,7 @@ class InsertionRangeSearch:
                         current_flow = neighbor_flow
                         current_starts = neighbor_starts
                         improved = True
-                        # iterations += 1
+                        iterations += 1
                         break
 
                 if improved:

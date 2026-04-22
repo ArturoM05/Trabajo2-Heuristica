@@ -49,11 +49,27 @@ class ConstructiveAlgorithm:
             if self._is_valid_start_time(job_id, trial_start, machine_schedule):
                 return trial_start
 
-        # Fallback: avanzar desde el mayor candidato hasta encontrar hueco
-        # (cubre casos con muchos solapamientos)
+        # Fallback: buscar el siguiente tiempo posible basado en liberaciones de máquinas
         trial_start = max(candidates)
-        while not self._is_valid_start_time(job_id, trial_start, machine_schedule):
-            trial_start += 1
+        max_attempts = 1000  # Límite de intentos para evitar loops
+        attempts = 0
+        while not self._is_valid_start_time(job_id, trial_start, machine_schedule) and attempts < max_attempts:
+            # Encontrar el próximo tiempo candidato: el mínimo tiempo de liberación de alguna máquina requerida después de trial_start
+            next_times = []
+            for machine in machines_needed:
+                if machine in machine_schedule:
+                    for _, end, _ in machine_schedule[machine]:
+                        if end > trial_start:
+                            next_times.append(end)
+            if next_times:
+                trial_start = min(next_times)
+            else:
+                # No hay más liberaciones, incrementar arbitrariamente (poco probable)
+                trial_start += 1
+            attempts += 1
+        if attempts >= max_attempts:
+            # Fallback al release date, aunque puede no ser válido
+            trial_start = self.release_dates[job_id]
         return trial_start
 
     def _is_valid_start_time(self, job_id, start_time, machine_schedule):
