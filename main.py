@@ -167,16 +167,16 @@ def main():
         #    "2-OPT (Swap consecutivos, Best Improvement)",
         #    "NWJSSP_ArturoMurgueytio_2opt.xlsx",
         #),
-        #(
-        #    run_swap_range_algorithm,
-        #    "SWAP-10 (Swap distancia ≤10, Best Improvement)",
-        #    "NWJSSP_ArturoMurgueytio_Swap10.xlsx",
-        #),
         (
-            run_insertion_range_algorithm,
-            "INSERTION-10 (Inserción distancia ≤10, First Improvement)",
-            "NWJSSP_ArturoMurgueytio_Insertion10.xlsx",
+            run_swap_range_algorithm,
+            "SWAP-10 (Swap distancia ≤10, Best Improvement)",
+            "NWJSSP_ArturoMurgueytio_Swap10.xlsx",
         ),
+        #(
+        #    run_insertion_range_algorithm,
+        #    "INSERTION-10 (Inserción distancia ≤10, First Improvement)",
+        #    "NWJSSP_ArturoMurgueytio_Insertion10.xlsx",
+        #),
     ]
 
     results_summary = []
