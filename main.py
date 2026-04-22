@@ -162,16 +162,16 @@ def main():
         #    "CONSTRUCTIVO (Greedy determinístico)",
         #    "NWJSSP_ArturoMurgueytio_Constructivo.xlsx",
         #),
-        #(
-        #    run_two_opt_algorithm,
-        #    "2-OPT (Swap consecutivos, Best Improvement)",
-        #    "NWJSSP_ArturoMurgueytio_2opt.xlsx",
-        #),
         (
-            run_swap_range_algorithm,
-            "SWAP-10 (Swap distancia ≤10, Best Improvement)",
-            "NWJSSP_ArturoMurgueytio_Swap10.xlsx",
+            run_two_opt_algorithm,
+            "2-OPT (Swap consecutivos, Best Improvement)",
+            "NWJSSP_ArturoMurgueytio_2opt.xlsx",
         ),
+        #(
+        #    run_swap_range_algorithm,
+        #    "SWAP-10 (Swap distancia ≤10, Best Improvement)",
+        #    "NWJSSP_ArturoMurgueytio_Swap10.xlsx",
+        #),
         #(
         #    run_insertion_range_algorithm,
         #    "INSERTION-10 (Inserción distancia ≤10, First Improvement)",
